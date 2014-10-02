@@ -9,13 +9,15 @@
 
 int isPrimeNumber(int number)
 {
-    for(int i = 2; i <= number / 2 ; i++)
+    int i = 0;
+    for(i = 2; i <= number / 2 ; i++)
     {
         if(number % i == 0)
         {
             return 0;
         }
     }
+    /* printf("Found:\t %d\n",i); */
     return 1;
 }
 
@@ -32,10 +34,10 @@ int createPrimeNumberArray(int *array, int size)
     }
 }
 
-int getPrimeFactor(int *candidate)
+int getPrimeFactor(unsigned long *candidate)
 {
     //Get a Array of Primenumbers
-    int arraySize = 10000;
+    int arraySize = 100000;
     int primeNumberArray[arraySize];
     int highFactor = 0;
     createPrimeNumberArray(&primeNumberArray[0], arraySize);
@@ -58,10 +60,10 @@ int getPrimeFactor(int *candidate)
 int factorize(int candidate)
 {
     /* printf("%d\n",candidate); */
-    int result =  candidate;
+    unsigned long result =  candidate;
     while(result != 1)
     {
-        printf("%d\n",getPrimeFactor(&result));
+        printf("%lu\n",getPrimeFactor(&result));
         result = result / getPrimeFactor(&result);
     }
 }
@@ -71,4 +73,11 @@ int main(int argc, char *argv[])
     unsigned long testnumber = 6008514754;
     printf("Testing: %lu",testnumber);
     factorize(testnumber);
+    int testArray[50000];
+    createPrimeNumberArray(&testArray[0],50000);
+
+    /* for(int i = 0; i < 1000; i++) */
+    /* { */
+    /*     printf("%d\n",testArray[i]); */
+    /* } */
 }
